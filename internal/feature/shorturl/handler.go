@@ -1,12 +1,21 @@
-package handler
+package shorturl
 
 import (
 	gin "github.com/gin-gonic/gin"
-	shorturldto "github.com/kasslima/url-shortener/internal/http/dto/shorturl"
 )
 
+type Handler struct {
+	service *Service
+}
+
+func NewHandler(service *Service) *Handler {
+	return &Handler{
+		service: service,
+	}
+}
+
 func (h *Handler) CreateShortURL(c *gin.Context) {
-	var req shorturldto.CreateShortURLRequest
+	var req CreateShortURLRequest
 
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(400, gin.H{"error": err.Error()})

@@ -1,4 +1,4 @@
-package shorturldto
+package shorturl
 
 type CreateShortURLRequest struct {
 	LongURL string `json:"long_url" binding:"required"`
