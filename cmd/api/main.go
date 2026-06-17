@@ -10,9 +10,10 @@ import (
 func main() {
 	router := gin.Default()
 
-	h := &shorturl.Handler{}
+	shortURLService := shorturl.NewService()
+	shortURLHandler := shorturl.NewHandler(shortURLService)
 
-	http.RegisterRoutes(router, h)
+	http.RegisterRoutes(router, shortURLHandler)
 
 	router.Run(":8080")
 }
